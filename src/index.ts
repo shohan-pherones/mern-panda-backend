@@ -1,20 +1,20 @@
 import cors from "cors";
 import "dotenv/config";
-import express from "express";
-import mongoose from "mongoose";
-import myUserRoute from "./routes/MyUserRoute";
+import express, { Application } from "express";
+import { connectDb } from "./config/db.config";
+import myUserRoute from "./routes/user.route";
 
-mongoose
-  .connect(process.env.MONGODB_CONNECTION_STRING as string)
-  .then(() => console.log("Connected to database!"));
-
-const app = express();
+const app: Application = express();
 
 app.use(express.json());
 app.use(cors());
 
 app.use("/api/my/user", myUserRoute);
 
-app.listen(7000, () => {
-  console.log("Server started on localhost:7000");
+connectDb();
+
+const port = process.env.PORT || 7000;
+
+app.listen(port, () => {
+  console.log(`Server started on localhost:${port}`);
 });
