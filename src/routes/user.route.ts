@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import {
   createCurrentUser,
   getCurrentUser,
@@ -7,7 +7,7 @@ import {
 import { validateMyUserRequest } from "../dto/user.dto";
 import { jwtCheck, jwtParse } from "../middlewares/auth.middleware";
 
-const router = express.Router();
+const router: Router = express.Router();
 
 router.get("/", jwtCheck, jwtParse, getCurrentUser);
 router.post("/", jwtCheck, createCurrentUser);

@@ -4,6 +4,7 @@ import express, { Application, Request, Response } from "express";
 import { connectCloudinary } from "./config/cloudinary.config";
 import { connectDb } from "./config/db.config";
 import myUserRoute from "./routes/user.route";
+import myRestaurantRoute from "./routes/restaurant.route";
 
 const app: Application = express();
 
@@ -15,6 +16,7 @@ app.get("/health", async (req: Request, res: Response) => {
 });
 
 app.use("/api/my/user", myUserRoute);
+app.use("/api/my/restaurant", myRestaurantRoute);
 
 connectDb();
 connectCloudinary();
