@@ -3,8 +3,8 @@ import "dotenv/config";
 import express, { Application, Request, Response } from "express";
 import { connectCloudinary } from "./config/cloudinary.config";
 import { connectDb } from "./config/db.config";
-import myUserRoute from "./routes/user.route";
 import myRestaurantRoute from "./routes/restaurant.route";
+import myUserRoute from "./routes/user.route";
 
 const app: Application = express();
 
