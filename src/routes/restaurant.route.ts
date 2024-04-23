@@ -2,6 +2,7 @@ import express, { Router } from "express";
 import {
   createMyRestaurant,
   getMyRestaurant,
+  updateMyRestaurant,
 } from "../controllers/restaurant.controller";
 import { validateMyRestaurantRequest } from "../dto/restaurant.dto";
 import { jwtCheck, jwtParse } from "../middlewares/auth.middleware";
@@ -17,6 +18,14 @@ router.post(
   jwtCheck,
   jwtParse,
   createMyRestaurant
+);
+router.put(
+  "/",
+  upload.single("imageFile"),
+  validateMyRestaurantRequest,
+  jwtCheck,
+  jwtParse,
+  updateMyRestaurant
 );
 
 export default router;
