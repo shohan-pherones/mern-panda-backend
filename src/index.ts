@@ -3,6 +3,7 @@ import "dotenv/config";
 import express, { Application, Request, Response } from "express";
 import { connectCloudinary } from "./config/cloudinary.config";
 import { connectDb } from "./config/db.config";
+import restaurantRoute from "./routes/restaurant.admin.route";
 import myRestaurantRoute from "./routes/restaurant.route";
 import myUserRoute from "./routes/user.route";
 
@@ -17,6 +18,7 @@ app.get("/health", async (req: Request, res: Response) => {
 
 app.use("/api/my/user", myUserRoute);
 app.use("/api/my/restaurant", myRestaurantRoute);
+app.use("/api/restaurant", restaurantRoute);
 
 connectDb();
 connectCloudinary();
