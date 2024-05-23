@@ -18,11 +18,11 @@ const orderSchema = new mongoose.Schema(
         quantity: { type: Number, required: true },
       },
     ],
-    totalAmount: { type: Number, required: true },
+    totalAmount: Number,
     status: {
       type: String,
       enum: ["placed", "paid", "inProgress", "outForDelivery", "delivered"],
-      default: "placed",
+      required: true,
     },
   },
   { timestamps: true }
