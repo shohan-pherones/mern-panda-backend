@@ -3,15 +3,18 @@ import "dotenv/config";
 import express, { Application, Request, Response } from "express";
 import { connectCloudinary } from "./config/cloudinary.config";
 import { connectDb } from "./config/db.config";
+import orderRoutes from "./routes/order.route";
 import restaurantRoute from "./routes/restaurant.admin.route";
 import myRestaurantRoute from "./routes/restaurant.route";
 import myUserRoute from "./routes/user.route";
-import orderRoutes from "./routes/order.route";
 
 const app: Application = express();
 
-app.use(express.json());
 app.use(cors());
+
+app.use("/api/order/checkout/webhook", express.raw({ type: "*/*" }));
+
+app.use(express.json());
 
 app.get("/health", async (req: Request, res: Response) => {
   res.send({ message: "OK!" });
