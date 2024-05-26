@@ -159,3 +159,16 @@ async function createSession(
 
   return sessionData;
 }
+
+export const getMyOrders = async (req: Request, res: Response) => {
+  const orders = await Order.find({ user: req.userId })
+    .populate("restaurant")
+    .populate("user");
+
+  res.status(200).json(orders);
+  try {
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
